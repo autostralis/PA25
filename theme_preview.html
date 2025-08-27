@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanzor - Modern Theme Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Modern Theme CSS Variables */
+        :root {
+            --gradient-primary: linear-gradient(135deg, rgb(147 51 234) 0%, rgb(236 72 153) 100%);
+            --gradient-secondary: linear-gradient(135deg, rgb(59 130 246) 0%, rgb(147 51 234) 100%);
+            --gradient-accent: linear-gradient(135deg, rgb(236 72 153) 0%, rgb(245 158 11) 100%);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+        
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .gradient-primary { background: var(--gradient-primary); }
+        .gradient-secondary { background: var(--gradient-secondary); }
+        .gradient-accent { background: var(--gradient-accent); }
+        
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased">
+    <!-- Navigation -->
+    <header class="glass sticky top-0 z-50 border-b border-slate-200/40">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <div class="text-3xl font-bold text-gradient tracking-tight">
+                    Spanzor
+                </div>
+                <ul class="hidden md:flex items-center gap-8">
+                    <li><a href="#" class="text-slate-600 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105">Home</a></li>
+                    <li><a href="#" class="text-slate-600 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105">Influencers</a></li>
+                    <li><a href="#" class="text-slate-600 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105">How It Works</a></li>
+                    <li><a href="#" class="text-slate-600 hover:text-purple-600 font-medium transition-all duration-300 hover:scale-105">Packages</a></li>
+                    <li>
+                        <button class="gradient-primary text-white px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 font-medium">
+                            Get Started
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center relative overflow-hidden" style="background: radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-40 -right-40 w-80 h-80 gradient-primary rounded-full blur-3xl opacity-20 animate-float"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 gradient-secondary rounded-full blur-3xl opacity-20 animate-float" style="animation-delay: -3s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-4xl animate-fade-in-up">
+                <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+                    <span class="text-gradient">Connecting Brands</span><br>
+                    <span class="text-slate-900">with Influence</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 text-slate-600 leading-relaxed max-w-3xl">
+                    Spanzor is the next-gen influencer marketing platform that connects brands with top creators across YouTube and Instagram.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <button class="gradient-primary text-white px-8 py-4 rounded-xl hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 font-semibold text-lg">
+                        Start Your Campaign
+                    </button>
+                    <button class="glass border-2 border-purple-500/20 text-slate-900 px-8 py-4 rounded-xl hover:border-purple-500/40 hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold text-lg backdrop-blur-sm">
+                        Browse Influencers
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-24 bg-gradient-to-br from-slate-100/50 to-slate-50/30 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="text-gradient">Trusted by Thousands</span>
+                </h2>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                    Join the growing community of brands and creators achieving remarkable results
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center group">
+                    <div class="glass p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-slate-200/20">
+                        <div class="text-6xl md:text-7xl font-bold text-gradient mb-4 group-hover:animate-pulse">10K+</div>
+                        <div class="text-xl font-semibold text-slate-900 mb-2">Verified Influencers</div>
+                        <div class="text-slate-600">Curated creators across all niches</div>
+                    </div>
+                </div>
+                <div class="text-center group">
+                    <div class="glass p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-slate-200/20">
+                        <div class="text-6xl md:text-7xl font-bold text-gradient mb-4 group-hover:animate-pulse">5K+</div>
+                        <div class="text-xl font-semibold text-slate-900 mb-2">Brand Partners</div>
+                        <div class="text-slate-600">From startups to Fortune 500 companies</div>
+                    </div>
+                </div>
+                <div class="text-center group">
+                    <div class="glass p-8 rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-slate-200/20">
+                        <div class="text-6xl md:text-7xl font-bold text-gradient mb-4 group-hover:animate-pulse">340%</div>
+                        <div class="text-xl font-semibold text-slate-900 mb-2">Average ROI</div>
+                        <div class="text-slate-600">Proven returns on marketing investment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Cards Preview -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="text-gradient">Modern Features</span>
+                </h2>
+                <p class="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+                    Experience the power of modern design and seamless functionality
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass p-6 rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-slate-200/20 group">
+                    <div class="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:animate-pulse">
+                        🎯
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">Glass Morphism</h3>
+                    <p class="text-slate-600">Beautiful glass effects with backdrop blur for modern aesthetics</p>
+                </div>
+                
+                <div class="glass p-6 rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-slate-200/20 group">
+                    <div class="w-16 h-16 gradient-secondary rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:animate-pulse">
+                        🎨
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">Gradient Design</h3>
+                    <p class="text-slate-600">Contemporary purple-pink gradient color palette throughout</p>
+                </div>
+                
+                <div class="glass p-6 rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-slate-200/20 group">
+                    <div class="w-16 h-16 gradient-accent rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:animate-pulse">
+                        ⚡
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">Micro Interactions</h3>
+                    <p class="text-slate-600">Smooth animations and hover effects for enhanced user experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative overflow-hidden bg-gradient-to-br from-slate-100/20 to-slate-50/40 border-t border-slate-200/40">
+        <div class="max-w-7xl mx-auto px-6 py-16 relative z-10">
+            <div class="text-center">
+                <div class="text-3xl font-bold text-gradient mb-4">Spanzor</div>
+                <p class="text-slate-600 mb-6">Modern Influencer Marketing Platform</p>
+                <p class="text-slate-500">© 2025 Spanzor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
