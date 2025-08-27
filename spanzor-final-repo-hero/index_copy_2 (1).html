@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spanzor - The next-gen influencer marketing platform connecting brands with top creators across YouTube and Instagram.">
+    <meta name="keywords" content="influencer marketing, brand collaboration, social media marketing, creator partnerships">
+    <meta name="author" content="Spanzor Team">
+    <title>Spanzor | Influencer Marketing Platform</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #ecf0f1;
+            --accent: #3498db;
+            --text: #34495e;
+            --light: #f8f9fa;
+            --wood: #d4a574;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header (non-sticky) */
+        header {
+            background-color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: static; /* changed from fixed */
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 0;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .nav-links a.active { color: var(--accent); font-weight: 600; }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent);
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212,165,116,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .primary-button {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        
+        .primary-button:hover {
+            background-color: var(--accent);
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--primary);
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 2px solid var(--primary);
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-button:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+        
+        .stat-item {
+            flex: 1;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background-color: #e0e0e0;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: var(--text);
+        }
+        
+        /* General Section Styling */
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: var(--text);
+        }
+
+        /* Influencer Categories Section */
+        .categories {
+            padding: 80px 0;
+        }
+        
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .category-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0; transform: translateY(20px); /* for animate */
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background-color: var(--wood);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .category-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--wood);
+        }
+        
+        .category-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .category-followers {
+            font-size: 16px;
+            color: var(--text);
+        }
+        
+        .category-description {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 10px;
+        }
+        
+        /* Featured Creators Section */
+        .creators {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .creators-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .creator-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            width: calc(33.33% - 20px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            opacity: 0; transform: translateY(20px); /* for animate */
+            min-width: 300px;
+        }
+        
+        .creator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .creator-image {
+            height: 200px;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary);
+        }
+        
+        .creator-info {
+            padding: 20px;
+        }
+        
+        .creator-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .creator-niche {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+        
+        .creator-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .creator-stat {
+            text-align: center;
+        }
+        
+        .creator-stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .creator-stat-label {
+            font-size: 14px;
+            color: var(--text);
+        }
+        
+        .creator-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .creator-tag {
+            background-color: var(--secondary);
+            color: var(--text);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        /* Why Choose Spanzor Section */
+        .why-choose {
+            padding: 80px 0;
+        }
+        
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            width: calc(50% - 15px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            opacity: 0; transform: translateY(20px); /* for animate */
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 30px;
+            color: var(--wood);
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+        
+        .feature-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .feature-content p {
+            font-size: 16px;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        
+        /* How Spanzor Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background-color: #e0e0e0;
+            z-index: 1;
+        }
+        
+        .step {
+            width: calc(25% - 15px);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            opacity: 0; transform: translateY(20px); /* for animate */
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .step-description {
+            font-size: 16px;
+            color: var(--text);
+        }
+
+        /* Packages Section */
+        .packages {
+            padding: 80px 0;
+        }
+        .packages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            align-items: stretch;
+        }
+        .package-card {
+            background-color: var(--white);
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            opacity: 0; transform: translateY(20px); /* for animate */
+            width: calc(33.33% - 20px);
+            min-width: 300px;
+        }
+        .package-card.featured {
+            border-color: var(--wood);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .package-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .package-icon {
+            font-size: 40px;
+            color: var(--wood);
+            margin-bottom: 15px;
+        }
+        .package-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .package-price {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .package-description {
+            font-size: 16px;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        .package-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .package-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .package-features i {
+            color: var(--wood);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        .package-card .primary-button {
+            margin-top: auto;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+        }
+        
+        .testimonials-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            width: calc(33.33% - 20px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            opacity: 0; transform: translateY(20px); /* for animate */
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--wood);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.6;
+            padding-left: 10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+            color: var(--primary);
+        }
+        
+        .author-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            color: var(--text);
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: 1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .cta p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--white);
+            opacity: 0.9;
+        }
+        
+        .cta-button-large {
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        .contact .form-control {
+             width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background-color: #fff;
+        }
+        .contact .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            --tw-ring-color: var(--accent);
+        }
+        .contact .submit-button {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .contact .submit-button:hover {
+            background-color: var(--accent);
+        }
+        .contact a {
+            color: var(--accent);
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--secondary);
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-column {
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            flex: 2;
+            min-width: 250px;
+            margin-right: 30px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .footer-about p {
+            margin-bottom: 15px;
+        }
+
+        .footer-about a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .footer-about a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 50px;
+            flex: 3;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--secondary);
+            font-size: 14px;
+            color: var(--text);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .package-card {
+                width: calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .creators-container {
+                justify-content: center;
+            }
+            .creator-card, .testimonial-card {
+                width: calc(50% - 15px);
+            }
+            
+            .feature-card {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            /* Mobile menu panel when active */
+            .nav-links.active {
+                display: flex;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: var(--white);
+                border: 1px solid var(--secondary);
+                border-radius: 8px;
+                padding: 12px 18px;
+                box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .stat-item:not(:last-child)::after {
+                display: none;
+            }
+            
+            .categories-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .creators-container, .testimonials-container, .packages-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .creator-card, .testimonial-card, .package-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .steps-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .steps-container::before {
+                display: none;
+            }
+            
+            .step {
+                width: 100%;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        }
+        
+        /* Scandinavian Design Elements */
+        .scandi-pattern {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-image: radial-gradient(var(--wood) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .pattern-1 { top: 10%; left: 5%; }
+        .pattern-2 { bottom: 10%; right: 5%; }
+        
+        .wood-accent {
+            height: 5px;
+            width: 80px;
+            background-color: var(--wood);
+            margin: 0 auto 30px;
+        }
+        
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        /* Simple fade-up animation for observed elements */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+        .animate { animation: fadeUp 0.6s ease-out forwards; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Spanzor</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#influencers">Influencers</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#packages">Packages</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" class="cta-button">Get Started</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="scandi-pattern pattern-1"></div>
+        <div class="scandi-pattern pattern-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Connecting Brands with Influence</h1>
+                <p>Spanzor is the next-gen influencer marketing platform that connects brands with top creators across YouTube and Instagram. Find, evaluate, and collaborate with influencers who amplify your story.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="primary-button">Start Your Campaign</a>
+                    <a href="#influencers" class="secondary-button">Browse Influencers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Verified Influencers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5K+</div>
+                    <div class="stat-label">Brand Partners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">340%</div>
+                    <div class="stat-label">Average ROI</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Influencer Categories Section -->
+    <section class="categories" id="influencers">
+        <div class="container">
+            <h2 class="section-title">Influencer Categories</h2>
+            <div class="wood-accent"></div>
+            <p class="section-subtitle">We classify influencers by reach and influence type to help brands find the perfect match for their campaigns</p>
+            <div class="categories-container">
+                <div class="category-card card-hover">
+                    <div class="category-icon"><i class="fas fa-crown"></i></div>
+                    <h3 class="category-name">Elite</h3>
+                    <p class="category-followers">10M+ followers</p>
+                    <p class="category-description">Global-scale influencers, mega celebrities</p>
+                </div>
+                <div class="category-card card-hover">
+                    <div class="category-icon"><i class="fas fa-star"></i></div>
+                    <h3 class="category-name">Premium</h3>
+                    <p class="category-followers">2M – 10M followers</p>
+                    <p class="category-description">Leading creators with massive impact</p>
+                </div>
+                <div class="category-card card-hover">
+                    <div class="category-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="category-name">Rising Icons</h3>
+                    <p class="category-followers">500K – 2M followers</p>
+                    <p class="category-description">Mid-tier stars with loyal, niche-driven audiences</p>
+                </div>
+                <div class="category-card card-hover">
+                    <div class="category-icon"><i class="fas fa-dumbbell"></i></div>
+                    <h3 class="category-name">Growth Champions</h3>
+                    <p class="category-followers">50K – 500K followers</p>
+                    <p class="category-description">Micro-influencers with strong engagement</p>
+                </div>
+                <div class="category-card card-hover">
+                    <div class="category-icon"><i class="fas fa-seedling"></i></div>
+                    <h3 class="category-name">Emerging Voices</h3>
+                    <p class="category-followers">20K – 50K followers</p>
+                    <p class="category-description">Nano-influencers, authentic local reach</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Creators Section -->
+    <section class="creators">
+        <div class="container">
+            <h2 class="section-title">Featured Creators</h2>
+            <div class="wood-accent"></div>
+            <p class="section-subtitle">Meet some of our top-performing influencers across different niches</p>
+            <div class="creators-container">
+                <div class="creator-card card-hover">
+                    <div class="creator-image"><i class="fas fa-user-circle"></i></div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Priya Sharma</h3>
+                        <p class="creator-niche">Fashion & Lifestyle</p>
+                        <div class="creator-stats">
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">5.2M</div>
+                                <div class="creator-stat-label">Followers</div>
+                            </div>
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">8.5%</div>
+                                <div class="creator-stat-label">Engagement</div>
+                            </div>
+                        </div>
+                        <div class="creator-tags">
+                            <span class="creator-tag">Fashion</span>
+                            <span class="creator-tag">Beauty</span>
+                            <span class="creator-tag">Lifestyle</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creator-card card-hover">
+                    <div class="creator-image"><i class="fas fa-user-circle"></i></div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Arjun Kapoor</h3>
+                        <p class="creator-niche">Fitness & Health</p>
+                        <div class="creator-stats">
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">1.8M</div>
+                                <div class="creator-stat-label">Followers</div>
+                            </div>
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">12.3%</div>
+                                <div class="creator-stat-label">Engagement</div>
+                            </div>
+                        </div>
+                        <div class="creator-tags">
+                            <span class="creator-tag">Fitness</span>
+                            <span class="creator-tag">Health</span>
+                            <span class="creator-tag">Nutrition</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creator-card card-hover">
+                    <div class="creator-image"><i class="fas fa-user-circle"></i></div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Sneha Reddy</h3>
+                        <p class="creator-niche">Food & Travel</p>
+                        <div class="creator-stats">
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">450K</div>
+                                <div class="creator-stat-label">Followers</div>
+                            </div>
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">15.2%</div>
+                                <div class="creator-stat-label">Engagement</div>
+                            </div>
+                        </div>
+                        <div class="creator-tags">
+                            <span class="creator-tag">Food</span>
+                            <span class="creator-tag">Travel</span>
+                            <span class="creator-tag">Photography</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creator-card card-hover">
+                    <div class="creator-image"><i class="fas fa-user-circle"></i></div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Rohan Joshi</h3>
+                        <p class="creator-niche">Tech & Gadgets</p>
+                        <div class="creator-stats">
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">2.5M</div>
+                                <div class="creator-stat-label">Followers</div>
+                            </div>
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">10.1%</div>
+                                <div class="creator-stat-label">Engagement</div>
+                            </div>
+                        </div>
+                        <div class="creator-tags">
+                            <span class="creator-tag">Tech</span>
+                            <span class="creator-tag">Gadgets</span>
+                            <span class="creator-tag">Reviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creator-card card-hover">
+                    <div class="creator-image"><i class="fas fa-user-circle"></i></div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Ananya Rao</h3>
+                        <p class="creator-niche">Travel & Adventure</p>
+                        <div class="creator-stats">
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">980K</div>
+                                <div class="creator-stat-label">Followers</div>
+                            </div>
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">14.8%</div>
+                                <div class="creator-stat-label">Engagement</div>
+                            </div>
+                        </div>
+                        <div class="creator-tags">
+                            <span class="creator-tag">Travel</span>
+                            <span class="creator-tag">Adventure</span>
+                            <span class="creator-tag">Vlogging</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="creator-card card-hover">
+                    <div class="creator-image"><i class="fas fa-user-circle"></i></div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Vikram Singh</h3>
+                        <p class="creator-niche">Gaming & Esports</p>
+                        <div class="creator-stats">
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">3.1M</div>
+                                <div class="creator-stat-label">Followers</div>
+                            </div>
+                            <div class="creator-stat">
+                                <div class="creator-stat-value">9.2%</div>
+                                <div class="creator-stat-label">Engagement</div>
+                            </div>
+                        </div>
+                        <div class="creator-tags">
+                            <span class="creator-tag">Gaming</span>
+                            <span class="creator-tag">Esports</span>
+                            <span class="creator-tag">Streaming</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Spanzor Section -->
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Spanzor?</h2>
+            <div class="wood-accent"></div>
+            <p class="section-subtitle">Everything you need to run successful influencer marketing campaigns at scale</p>
+            <div class="features-container">
+                <div class="feature-card card-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Verified Influencers</h3>
+                        <p>Access to 10,000+ verified influencers across all major niches with transparent engagement data</p>
+                    </div>
+                </div>
+                <div class="feature-card card-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Smart Matchmaking</h3>
+                        <p>AI-powered recommendations ensuring perfect brand-influencer alignment for maximum impact</p>
+                    </div>
+                </div>
+                <div class="feature-card card-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Secure Collaborations</h3>
+                        <p>Protected payments, automated contracts, and dedicated support for seamless partnerships</p>
+                    </div>
+                </div>
+                <div class="feature-card card-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Real-time Analytics</h3>
+                        <p>Track campaign performance, engagement rates, and ROI with comprehensive analytics dashboard</p>
+                    </div>
+                </div>
+                <div class="feature-card card-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Instant Booking</h3>
+                        <p>Book influencers instantly with our availability calendar and automated scheduling system</p>
+                    </div>
+                </div>
+                <div class="feature-card card-hover">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Quality Assurance</h3>
+                        <p>PostGuard™ technology ensures content delivery and maintains campaign quality standards</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Spanzor Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How Spanzor Works</h2>
+            <div class="wood-accent"></div>
+            <p class="section-subtitle">Simple, transparent, and effective influencer marketing in 4 easy steps</p>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Choose Deliverable</h3>
+                    <p class="step-description">Select from Instagram Reels, Stories, Posts, YouTube Shorts, or Integrations</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Pick Creators</h3>
+                    <p class="step-description">Filter by tier, niche, language, location, and budget to find the perfect match</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Schedule & Brief</h3>
+                    <p class="step-description">Book available slots, provide campaign briefs, and add any special requirements</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <h3 class="step-title">Launch & Track</h3>
+                    <p class="step-description">Monitor campaign performance with real-time analytics and guaranteed delivery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <h2 class="section-title">Our Packages</h2>
+            <div class="wood-accent"></div>
+            <p class="section-subtitle">Find the perfect package to match your campaign goals and budget.</p>
+            <div class="packages-container">
+                <div class="package-card animate">
+                    <div class="package-icon"><i class="fas fa-seedling"></i></div>
+                    <h3 class="package-title">Starter</h3>
+                    <p class="package-price">₹10,000 – ₹50,000</p>
+                    <p class="package-description">Perfect for new brands to build initial awareness and engagement with nano-influencers.</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i>2-5 collaborations</li>
+                        <li><i class="fas fa-check"></i>Emerging & Growth Voices</li>
+                        <li><i class="fas fa-check"></i>Instagram Stories & Posts</li>
+                        <li><i class="fas fa-check"></i>Basic Performance Tracking</li>
+                    </ul>
+                    <a href="#contact" class="primary-button">Get Started</a>
+                </div>
+                <div class="package-card featured animate">
+                    <div class="package-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="package-title">Growth</h3>
+                    <p class="package-price">₹50,000 – ₹2,00,000</p>
+                    <p class="package-description">Scale your reach and drive targeted traffic with a mix of micro and mid-tier influencers.</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i>5-10 collaborations</li>
+                        <li><i class="fas fa-check"></i>Growth & Rising Icons</li>
+                        <li><i class="fas fa-check"></i>Instagram Reels & YouTube Shorts</li>
+                        <li><i class="fas fa-check"></i>Dedicated Campaign Manager</li>
+                    </ul>
+                    <a href="#contact" class="primary-button">Choose Growth</a>
+                </div>
+                <div class="package-card animate">
+                    <div class="package-icon"><i class="fas fa-star"></i></div>
+                    <h3 class="package-title">Premium</h3>
+                    <p class="package-price">₹2,00,000 – ₹5,00,000</p>
+                    <p class="package-description">For established brands aiming for high-impact campaigns and market penetration.</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i>3-5 high-impact collaborations</li>
+                        <li><i class="fas fa-check"></i>Rising Icons & Premium Stars</li>
+                        <li><i class="fas fa-check"></i>YouTube Integrations</li>
+                        <li><i class="fas fa-check"></i>Creative Strategy & ROI Analysis</li>
+                    </ul>
+                    <a href="#contact" class="primary-button">Go Premium</a>
+                </div>
+                 <div class="package-card animate">
+                    <div class="package-icon"><i class="fas fa-crown"></i></div>
+                    <h3 class="package-title">Elite</h3>
+                    <p class="package-price">₹5,00,000 – ₹10,00,000</p>
+                    <p class="package-description">The ultimate package for brands seeking to dominate their niche with top-tier creators.</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i>2-4 high-impact collaborations</li>
+                        <li><i class="fas fa-check"></i>Premium & Elite Stars</li>
+                        <li><i class="fas fa-check"></i>Cross-platform Campaigns</li>
+                        <li><i class="fas fa-check"></i>Custom Campaign Strategy</li>
+                    </ul>
+                    <a href="#contact" class="primary-button">Go Elite</a>
+                </div>
+                 <div class="package-card animate">
+                    <div class="package-icon"><i class="fas fa-building"></i></div>
+                    <h3 class="package-title">Enterprise</h3>
+                    <p class="package-price">₹10,00,000+</p>
+                    <p class="package-description">A fully customized, long-term partnership for large-scale brands seeking market leadership.</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i>Custom number of collaborations</li>
+                        <li><i class="fas fa-check"></i>Long-term Ambassador Programs</li>
+                        <li><i class="fas fa-check"></i>Fully Managed Service</li>
+                        <li><i class="fas fa-check"></i>Brand Exclusivity Options</li>
+                    </ul>
+                    <a href="#contact" class="primary-button">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Trusted by Leading Brands</h2>
+            <div class="wood-accent"></div>
+            <p class="section-subtitle">See what our clients say about their Spanzor experience</p>
+            <div class="testimonials-container">
+                <div class="testimonial-card card-hover">
+                    <p class="testimonial-text">"Spanzor helped us find the perfect tech influencers for our app launch. We achieved 300% ROI in just 2 months!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p>Marketing Director, TechFlow Startup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card card-hover">
+                    <p class="testimonial-text">"The quality of influencers and the seamless booking process made our fashion campaign a huge success."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PS</div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Brand Manager, Fashion Forward</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card card-hover">
+                    <p class="testimonial-text">"From micro to macro influencers, Spanzor has the perfect creator for every budget and campaign goal."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AP</div>
+                        <div class="author-info">
+                            <h4>Arjun Patel</h4>
+                            <p>CEO, FitLife Pro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Scale Your Brand with Influence?</h2>
+                <p>Join thousands of brands and creators who trust Spanzor for their influencer marketing success. Start your first campaign today.</p>
+                <a href="#contact" class="cta-button-large">Get Started Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-subtitle">We’d love to hear from you. Send us a message and our team will get back to you shortly.</p>
+            <!-- UPDATED: Form action points to your Formspree endpoint -->
+            <form action="https://formspree.io/f/mdkdyvdg" method="POST" class="max-w-3xl mx-auto grid gap-6 bg-white p-8 rounded-lg shadow-md">
+                <!-- Basic info -->
+                <div>
+                    <label class="block text-left text-sm font-medium text-gray-700 mb-1" for="name">Full Name</label>
+                    <input id="name" type="text" name="name" placeholder="Your Name" required class="form-control focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-left text-sm font-medium text-gray-700 mb-1" for="email">Email</label>
+                        <input id="email" type="email" name="email" placeholder="you@example.com" required class="form-control focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-left text-sm font-medium text-gray-700 mb-1" for="city">City</label>
+                        <input id="city" type="text" name="city" placeholder="Your City" class="form-control focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+
+                <!-- Region (State/UT) -->
+                <div>
+                    <label class="block text-left text-sm font-medium text-gray-700 mb-1" for="state">Region (State/UT)</label>
+                    <select id="state" name="state" required class="form-control focus:ring-2 focus:ring-blue-500">
+                        <option value="">Select Your State/UT</option>
+                        <option>Andhra Pradesh</option>
+                        <option>Arunachal Pradesh</option>
+                        <option>Assam</option>
+                        <option>Bihar</option>
+                        <option>Chhattisgarh</option>
+                        <option>Delhi (NCT)</option>
+                        <option>Goa</option>
+                        <option>Gujarat</option>
+                        <option>Haryana</option>
+                        <option>Himachal Pradesh</option>
+                        <option>Jharkhand</option>
+                        <option>Karnataka</option>
+                        <option>Kerala</option>
+                        <option>Madhya Pradesh</option>
+                        <option>Maharashtra</option>
+                        <option>Manipur</option>
+                        <option>Meghalaya</option>
+                        <option>Mizoram</option>
+                        <option>Nagaland</option>
+                        <option>Odisha</option>
+                        <option>Punjab</option>
+                        <option>Rajasthan</option>
+                        <option>Sikkim</option>
+                        <option>Tamil Nadu</option>
+                        <option>Telangana</option>
+                        <option>Tripura</option>
+                        <option>Uttar Pradesh</option>
+                        <option>Uttarakhand</option>
+                        <option>West Bengal</option>
+                        <option>Andaman and Nicobar Islands</option>
+                        <option>Chandigarh</option>
+                        <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                        <option>Jammu and Kashmir</option>
+                        <option>Ladakh</option>
+                        <option>Lakshadweep</option>
+                        <option>Puducherry</option>
+                    </select>
+                </div>
+
+                <!-- Business vertical & budget -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-left text-sm font-medium text-gray-700 mb-1" for="vertical">Vertical (Industry)</label>
+                        <select id="vertical" name="vertical" required class="form-control focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Vertical</option>
+                            <option>Automotive</option>
+                            <option>Beauty & Personal Care</option>
+                            <option>Tech & Apps</option>
+                            <option>Finance / Fintech</option>
+                            <option>Education</option>
+                            <option>Travel & Hospitality</option>
+                            <option>Food & Beverages</option>
+                            <option>Fashion</option>
+                            <option>Health & Fitness</option>
+                            <option>Real Estate</option>
+                            <option>Gaming & Esports</option>
+                            <option>Home & Living</option>
+                            <option>Parenting</option>
+                            <option>Sports</option>
+                            <option>Entertainment</option>
+                            <option>E-commerce / Marketplaces</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-left text-sm font-medium text-gray-700 mb-1" for="budget">Budget (₹)</label>
+                        <select id="budget" name="budget" class="form-control focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Budget Range</option>
+                            <option>₹10,000 – ₹50,000</option>
+                            <option>₹50,000 – ₹2,00,000</option>
+                            <option>₹2,00,000 – ₹5,00,000</option>
+                            <option>₹5,00,000 – ₹10,00,000</option>
+                            <option>₹10,00,000+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Deliverable & platforms -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-left text-sm font-medium text-gray-700 mb-1" for="deliverable">Deliverable</label>
+                        <select id="deliverable" name="deliverable" required class="form-control focus:ring-2 focus:ring-blue-500">
+                            <option value="">Choose Deliverable</option>
+                            <option>Instagram Reel</option>
+                            <option>Instagram Story</option>
+                            <option>Instagram Post</option>
+                            <option>YouTube Short</option>
+                            <option>YouTube Integration</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <legend class="block text-left text-sm font-medium text-gray-700 mb-1">Platforms</legend>
+                            <div class="flex items-center space-x-6 mt-3">
+                                <label class="inline-flex items-center space-x-2"><input type="checkbox" name="platforms[]" value="Instagram" class="h-4 w-4 text-blue-600"> <span>Instagram</span></label>
+                                <label class="inline-flex items-center space-x-2"><input type="checkbox" name="platforms[]" value="YouTube" class="h-4 w-4 text-blue-600"> <span>YouTube</span></label>
+                                <label class="inline-flex items-center space-x-2"><input type="checkbox" name="platforms[]" value="Both" class="h-4 w-4 text-blue-600"> <span>Both</span></label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div>
+                    <label class="block text-left text-sm font-medium text-gray-700 mb-1" for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us briefly about your campaign and timeline" rows="5" required class="form-control focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+
+                <!-- Hidden helpers for Formspree -->
+                <input type="hidden" name="_subject" value="Spanzor Inquiry from Website" />
+                <input type="hidden" name="source" value="Spanzor Contact Page" />
+
+                <button type="submit" class="submit-button">Send Message</button>
+                <p class="text-sm text-gray-500 text-center">By submitting, you agree to our Privacy Policy.</p>
+            </form>
+            <p class="mt-8 text-center"><i class="fas fa-envelope mr-2"></i>Or email us directly at <a href="mailto:hello@spanzor.com">hello@spanzor.com</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column footer-about">
+                    <div class="footer-logo">Spanzor</div>
+                    <p>The next-gen influencer marketing platform that connects brands with top creators.</p>
+                    <p>Email us at: <a href="mailto:hello@spanzor.com">hello@spanzor.com</a></p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">Case Studies</a></li>
+                            <li><a href="#">API Docs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">GDPR</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Spanzor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Smooth scrolling for navigation links
+            const scrollLinks = document.querySelectorAll('.nav-links a, .hero-buttons a, .cta-button-large');
+            
+            scrollLinks.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href;
+                        const targetSection = document.querySelector(targetId);
+                        
+                        if (targetSection) {
+                            const y = targetSection.getBoundingClientRect().top + window.pageYOffset;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                            if (navLinks.classList.contains('active')) {
+                                navLinks.classList.remove('active'); // Close mobile menu if open
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Add active class to navigation items on scroll
+            window.addEventListener('scroll', function() {
+                let current = '';
+                const sections = document.querySelectorAll('section');
+                const navItems = document.querySelectorAll('.nav-links a');
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href').slice(1) === current) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Add animation on scroll
+            const animateElements = document.querySelectorAll('.category-card, .creator-card, .feature-card, .testimonial-card, .step, .package-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => observer.observe(element));
+        });
+    </script>
+</body>
+</html>

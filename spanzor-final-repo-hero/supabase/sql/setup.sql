@@ -1,0 +1,3 @@
+-- Use the full schema you executed earlier (profiles, industries, influencer_tiers,
+-- profile_industries, creator_stats, RLS policies, tier_for_followers function,
+-- and creator_directory view). It's idempotent and safe to run again.
