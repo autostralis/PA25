@@ -27,6 +27,20 @@ export default function PackagesSection() {
       featured: true
     },
     {
+      icon: '👑',
+      title: 'Elite',
+      price: '₹5,00,000 – ₹15,00,000',
+      description: 'High-impact campaigns with elite creators for brands seeking premium market presence.',
+      features: [
+        '2-4 elite collaborations',
+        'Elite & Premium Stars',
+        'Cross-platform Campaigns',
+        'Custom Campaign Strategy',
+        'Performance Analytics Suite'
+      ],
+      featured: false
+    },
+    {
       icon: '⭐',
       title: 'Premium',
       price: '₹2,00,000 – ₹5,00,000',
@@ -36,6 +50,21 @@ export default function PackagesSection() {
         'Rising Icons & Premium Stars',
         'YouTube Integrations',
         'Creative Strategy & ROI Analysis'
+      ],
+      featured: false
+    },
+    
+    {
+      icon: '💎',
+      title: 'Super Elite',
+      price: '₹15,00,000 – ₹25,00,000',
+      description: 'Premium campaigns with super elite creators for maximum brand visibility and impact.',
+      features: [
+        '2-3 super elite collaborations',
+        'Super Elite & Elite Stars',
+        'Premium Multi-platform Strategy',
+        'Dedicated Executive Manager',
+        'Custom Creative Development'
       ],
       featured: false
     },
@@ -53,47 +82,6 @@ export default function PackagesSection() {
       ],
       featured: false
     },
-    {
-      icon: '💎',
-      title: 'Super Elite',
-      price: '₹15,00,000 – ₹25,00,000',
-      description: 'Premium campaigns with super elite creators for maximum brand visibility and impact.',
-      features: [
-        '2-3 super elite collaborations',
-        'Super Elite & Elite Stars',
-        'Premium Multi-platform Strategy',
-        'Dedicated Executive Manager',
-        'Custom Creative Development'
-      ],
-      featured: false
-    },
-    {
-      icon: '👑',
-      title: 'Elite',
-      price: '₹5,00,000 – ₹15,00,000',
-      description: 'High-impact campaigns with elite creators for brands seeking premium market presence.',
-      features: [
-        '2-4 elite collaborations',
-        'Elite & Premium Stars',
-        'Cross-platform Campaigns',
-        'Custom Campaign Strategy',
-        'Performance Analytics Suite'
-      ],
-      featured: false
-    },
-    {
-      icon: '🏢',
-      title: 'Enterprise',
-      price: '₹10,00,000+',
-      description: 'A fully customized, long-term partnership for large-scale brands seeking market leadership.',
-      features: [
-        'Custom number of collaborations',
-        'Long-term Ambassador Programs',
-        'Fully Managed Service',
-        'Brand Exclusivity Options'
-      ],
-      featured: false
-    }
   ];
 
   return (
@@ -138,8 +126,7 @@ export default function PackagesSection() {
                    pkg.title === 'Premium' ? 'Go Premium' : 
                    pkg.title === 'Elite' ? 'Go Elite' :
                    pkg.title === 'Super Elite' ? 'Go Super Elite' :
-                   pkg.title === 'Legendary' ? 'Go Legendary' :
-                   pkg.title === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
+                   pkg.title === 'Legendary' ? 'Go Legendary' :}
                 </a>
               </div>
             </div>
