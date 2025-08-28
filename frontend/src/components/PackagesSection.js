@@ -26,6 +26,19 @@ export default function PackagesSection() {
       ],
       featured: true
     },
+        {
+      icon: '⭐',
+      title: 'Premium',
+      price: '₹2,00,000 – ₹5,00,000',
+      description: 'For established brands aiming for high-impact campaigns and market penetration.',
+      features: [
+        '3-5 high-impact collaborations',
+        'Rising Icons & Premium Stars',
+        'YouTube Integrations',
+        'Creative Strategy & ROI Analysis'
+      ],
+      featured: false
+    },
     {
       icon: '👑',
       title: 'Elite',
